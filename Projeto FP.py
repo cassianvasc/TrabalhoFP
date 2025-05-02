@@ -1,48 +1,94 @@
-nome = []
-especie = []
-raça = []
-datadenascimento = []
-peso = []
+def adicionar():
+        informações = []
+        nome = input("Escreva o nome do animal: ")
+        informações.append(input(f"Escreva a espécie de {nome}: "))
+        informações.append(input(f"Escreva a raça de {nome}: "))
+        informações.append(input(f"Escreva a data de nascimento de {nome}: "))
+        informações.append(input(f"Escreva o peso de {nome}: "))
+        pets[nome] = informações
+        informações = []
+        return pets
 
+def visualizar(nome):
+    print(f"Nome: {nome}")
+    print(f"Espécie: {pets[nome][0]}")
+    print(f"Raça: {pets[nome][1]}")
+    print(f"Data de nascimento (dd/mm/aaaa): {pets[nome][2]}")
+    print(f"Peso: {pets[nome][3]}")
+
+def editar(nome):
+    pets[nome][0] = input("Escreva a nova espécie: ")
+    pets[nome][1] = input("Escreva a nova raça: ")
+    pets[nome][2] = input("Escreva a nova data de nascimento: ")
+    pets[nome][3] = input("Escreva o novo peso: ")
+    #não tem como editar o nome, mas acho que não tem problema, porque da pra só excluir um pet e adicionar outro
+
+def excluir(nome):
+    del pets[nome]
+
+def registrar():
+    compromisso = []
+    print("Qual evento você deseja registrar?")
+    opcao = int(input("1- Vacinações, 2- Consultas Veterinárias, 3- Aplicações de remédios\n"))
+
+    if opcao < 1 or opcao > 3:
+        while opcao < 1 or opcao > 3:
+            opcao = int(input("Opção inválida. Escolha uma das opções citadas: "))
+
+    if opcao == 1:
+        compromisso.append(nomeErrado(input("Você quer marcar a vacinação para que pet? ")))
+        compromisso.append(input("Para que dia você quer marcar a sua vacinação? (dd/mm/aaaa) "))
+        compromisso.append(input("Alguma observação em relação á vaincação? "))
+        eventos['vacinas'].append(compromisso)
+        
+        
+    elif opcao == 2:
+        compromisso.append(nomeErrado(input("Você quer marcar a consulta para que pet? ")))
+        compromisso.append(input("Para que dia você quer marcar a sua consulta? (dd/mm/aaaa) "))
+        compromisso.append(input("Alguma observação em relação á consulta? "))
+        eventos['consultas'].append(compromisso)
+        
+    else:
+        compromisso.append(nomeErrado(input("Você quer marcar a aplicação de remédios para que pet? ")))
+        compromisso.append(input("Para que dia você quer marcar a sua aplicações? (dd/mm/aaaa) "))
+        compromisso.append(input("Alguma observação em relação a aplicação de remédiosw? "))
+        eventos['remedios'].append(compromisso)
+        
+    compromisso = []
+
+
+def nomeErrado(nome):
+    while nome not in pets:
+        nome = input("Esse pet não foi cadastrado. Escreva outro nome: ")
+    return nome
+
+pets = {}
+eventos = {'vacinas': [], 'consultas': [], 'remedios': []}
+nome = ''
 opcao = 0
-index = 0
 
 while True:
     print("O que você deseja fazer?")
-    opcao = int(input("1- Adicionar, 2- Visualizar, 3- Editar, 4- Excluir, 5- Sair "))
+    opcao = int(input("1- Adicionar, 2- Visualizar, 3- Editar, 4- Excluir, 5- Registrar eventos, 6- Sair\n"))
     
     if opcao == 1:
-        nome.append(input("Escreva o nome do animal: "))
-        especie.append(input("Escreva a espécie do animal: "))
-        raça.append(input("Escreva a raça do animal: "))
-        datadenascimento.append(input("Escreva a data de nascimento do animal: "))
-        peso.append(float(input("Escreva o peso do animal: ")))
-        print("Itens adicionados.")
+        adicionar()
+        print("Pet adicionado.")
     elif opcao == 2:
-        index = int(input("Qual o índex do animal que você deseja visualizar? "))
-        print(f"Nome: {nome[index]}")
-        print(f"Especie: {especie[index]}")
-        print(f"Raça: {raça[index]}")
-        print(f"Data de nascimento: {datadenascimento[index]}")
-        print(f"Peso: {peso[index]}")
+        nome = input("Qual o nome do animal que você deseja visualizar? ")
+        visualizar(nomeErrado(nome))
         print("Itens visualizados.")
     elif opcao == 3:
-        index = int(input("Qual o índex do animal que você deseja editar? "))
-        nome[index] = input("Qual será o novo nome? ")
-        especie[index] = input("Qual será a nova espécie? ")
-        raça[index] = input("Qual será a nova raça? ")
-        datadenascimento[index] = input("Qual será a nova data de nascimento? ")
-        peso[index] = float(input("Qual será o novo peso? "))
+        nome = input("Qual o nome do animal que você deseja editar? ")
+        editar(nomeErrado(nome))
         print("Itens alterados.")
     elif opcao == 4:
-        index = int(input("Qual o índice do animal que você deseja remover? "))
-        del nome[index]
-        del especie[index]
-        del raça[index]
-        del datadenascimento[index]
-        del peso[index]
+        nome = input("Qual o nome do animal que você deseja remover? ")
+        excluir(nomeErrado(nome))
         print("Itens removidos.")
     elif opcao == 5:
+        registrar()
+    elif opcao == 6:
         break
     else:
         while opcao < 1 or opcao > 5:
