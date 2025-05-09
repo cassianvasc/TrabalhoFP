@@ -1,37 +1,28 @@
 import os
 os.system("cls")
 
-def adicionar_animal():
-    informações = []
-    nome = input("Escreva o nome do animal: ")
-    informações.append(input(f"Escreva a espécie de {nome}: "))
-    informações.append(input(f"Escreva a raça de {nome}: "))
-    informações.append(input(f"Escreva a data de nascimento de {nome}: "))
-    informações.append(input(f"Escreva o peso de {nome}: "))
-    pets[nome] = informações
-    file = open("file.txt", "w", encoding='utf8')
-    file.write(str(pets)+"\n")
+def adicionar_animal(nome, especie, raca, datanascimento, peso, informacoes):
+    nome=input("Digite o nome do animal: ")
+    especie=input(f"Digite a especie de {nome}: ")
+    raca=input(f"Digite a raça de{nome}: ")
+    peso=input(f"Digite o peso de{nome}: ")
+    informacoes= f"{nome};{especie};{raca};{datanascimento};{peso}"
+    file = open("file.txt", "a", encoding='utf8')
+    file.writelines(informacoes)
     file.close()
-    return pets
 
 
-def visualizar_animal(nome):
-    print(f"Nome: {nome}")
-    print(f"Espécie: {pets[nome][0]}")
-    print(f"Raça: {pets[nome][1]}")
-    print(f"Data de nascimento: {pets[nome][2]}")
-    print(f"Peso: {pets[nome][3]}")
-
-
-def editar_animal(nome):
-    pets[nome][0] = input("Escreva a nova espécie: ")
-    pets[nome][1] = input("Escreva a nova raça: ")
-    pets[nome][2] = input("Escreva a nova data de nascimento: ")
-    pets[nome][3] = input("Escreva o novo peso: ")
+def visualizar_animal():
+    
     
 
-def excluir_animal(nome):
-    del pets[nome]
+
+def editar_animal():
+    
+    
+
+def excluir_animal():
+   
 
 
 def registrar_evento():
@@ -48,6 +39,9 @@ def registrar_evento():
         compromisso.append(input("Para que dia você quer marcar a sua vacinação? (dd/mm/aaaa) "))
         compromisso.append(input("Alguma observação em relação á vaincação? "))
         eventos['vacinas'].append(compromisso)
+        file = open("vacinas.txt", "a", encoding='utf8')
+        file.writelines("")
+        file.close()
         
         
     elif opcao == 2:
@@ -55,12 +49,18 @@ def registrar_evento():
         compromisso.append(input("Para que dia você quer marcar a sua consulta? (dd/mm/aaaa) "))
         compromisso.append(input("Alguma observação em relação á consulta? "))
         eventos['consultas'].append(compromisso)
+        file = open("consultas.txt", "a", encoding='utf8')
+        file.writelines("")
+        file.close()
         
     else:
         compromisso.append(nomeErrado(input("Você quer marcar a aplicação de remédios para que pet? ")))
         compromisso.append(input("Para que dia você quer marcar a sua aplicações? (dd/mm/aaaa) "))
         compromisso.append(input("Alguma observação em relação a aplicação de remédiosw? "))
         eventos['remedios'].append(compromisso)
+        file = open("aplicacoes.txt", "a", encoding='utf8')
+        file.writelines("")
+        file.close()
         
     compromisso = []
 
@@ -95,7 +95,7 @@ while True:
         excluir_animal(nomeErrado(nome))
         print("Itens removidos.")
     elif opcao == 5:
-        registrar_evento
+        registrar_evento()
     elif opcao == 6:
         break
     else:
