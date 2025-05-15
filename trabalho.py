@@ -287,7 +287,7 @@ while True:
     print("O que você deseja fazer?")
     
     try:
-        opcao = int(input("1- Adicionar um pet, 2- Visualizar um pet, 3- Editar um pet ja existente, 4- Excluir um pet, 5- Registrar eventos, 6- Definir/Atualizar metas, 7- Sair\n"))
+        opcao = int(input("1- Adicionar um pet, 2- Visualizar um pet, 3- Editar um pet ja existente, 4- Excluir um pet, 5- Registrar eventos, 6- Definir/Atualizar metas, 7- Visualizar pets para adoção, 8- Sair\n"))
     except ValueError:
         print("Entrada inválida. Por favor, digite um número entre 1 e 7.")
         continue
@@ -310,8 +310,12 @@ while True:
     
     elif opcao == 6:
         definir_metas()
-        
+
     elif opcao == 7:
+        import webbrowser
+        print(webbrowser.open("file:///C:/Users/ARELR/OneDrive/%C3%81rea%20de%20Trabalho/TrabalhoFP/index.html"))
+
+    elif opcao == 8:
         print("Obrigado por usar Vida Pet!")
         break
 
