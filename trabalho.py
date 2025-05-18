@@ -382,5 +382,5 @@ while True:
         break
 
     else:
-        print("Opção inválida. Digite um número entre 1 e 7.")
+        print("Opção inválida. Digite um número entre 1 e 9.")
         
