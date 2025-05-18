@@ -341,7 +341,7 @@ while True:
     try:
         opcao = int(input("1- Adicionar um pet, 2- Visualizar um pet, 3- Editar um pet ja existente, 4- Excluir um pet, 5- Registrar eventos, 6- Definir/Atualizar metas, 7- Visualizar pets para adoção, 8-Sugestões personalizadas, 9- Sair\n"))
     except ValueError:
-        print("Entrada inválida. Por favor, digite um número entre 1 e 7.")
+        print("Entrada inválida. Por favor, digite um número entre 1 e 9.")
         continue
 
     if opcao == 1:
