@@ -278,6 +278,58 @@ def definir_metas():
     else:
         print("Entrada inválida: Escolha 1 (Definir uma meta) ou 2 (Acompanhar uma meta).")
 
+
+def sugestoes_cuidados(especie, idade):
+    especie = especie.lower()
+    cuidados = {}
+
+    if especie == "cachorro":
+        if idade < 1:
+            cuidados = {
+                "brinquedos": "Brinquedos de borracha macia e mordedores próprios para filhotes",
+                "alimentação": "Ração para filhotes de cachorro (rica em proteínas e cálcio)",
+                "exercício": "Caminhadas curtas e brincadeiras leves\n"
+            }
+        elif idade < 7:
+            cuidados = {
+                "brinquedos": "Bolas resistentes, cordas e brinquedos interativos",
+                "alimentação": "Ração para adultos de acordo com o porte",
+                "exercício": "Caminhadas diárias e atividades físicas moderadas\n"
+            }
+        else:
+            cuidados = {
+                "brinquedos": "Brinquedos de baixo impacto, como pelúcias e mordedores leves",
+                "alimentação": "Ração sênior com menos gordura e suplementos articulares",
+                "exercício": "Exercícios leves e regulares para manter a mobilidade\n"
+            }
+
+    elif especie == "gato":
+        if idade < 1:
+            cuidados = {
+                "brinquedos": "Bolinha com guizo, varinhas com penas e brinquedos pequenos",
+                "alimentação": "Ração para filhotes de gato (com alta energia e taurina)",
+                "exercício": "Brincadeiras curtas com estímulos visuais\n"
+            }
+        elif idade < 10:
+            cuidados = {
+                "brinquedos": "Arranhadores, túneis e brinquedos interativos",
+                "alimentação": "Ração para adultos ou alimentação úmida equilibrada",
+                "exercício": "Brincadeiras diárias para manter o peso ideal\n"
+            }
+        else:
+            cuidados = {
+                "brinquedos": "Brinquedos suaves e arranhadores baixos",
+                "alimentação": "Ração sênior com baixo teor calórico",
+                "exercício": "Estímulos leves e cuidados com articulações\n"
+            }
+
+    else:
+        cuidados = {
+            "mensagem": "Espécie não reconhecida. Por favor, informe 'cachorro' ou 'gato'.\n"
+        }
+
+    return cuidados
+
 pets = {}
 eventos = {'vacinas': [], 'consultas': [], 'remedios': []}
 nome = ''
@@ -287,7 +339,7 @@ while True:
     print("O que você deseja fazer?")
     
     try:
-        opcao = int(input("1- Adicionar um pet, 2- Visualizar um pet, 3- Editar um pet ja existente, 4- Excluir um pet, 5- Registrar eventos, 6- Definir/Atualizar metas, 7- Visualizar pets para adoção, 8- Sair\n"))
+        opcao = int(input("1- Adicionar um pet, 2- Visualizar um pet, 3- Editar um pet ja existente, 4- Excluir um pet, 5- Registrar eventos, 6- Definir/Atualizar metas, 7- Visualizar pets para adoção, 8-Sugestões personalizadas, 9- Sair\n"))
     except ValueError:
         print("Entrada inválida. Por favor, digite um número entre 1 e 7.")
         continue
@@ -315,11 +367,20 @@ while True:
         import webbrowser
         print(webbrowser.open("file:///C:/Users/ARELR/OneDrive/%C3%81rea%20de%20Trabalho/TrabalhoFP/index.html"))
 
-    elif opcao == 8:
+    elif opcao == 8:    
+        pet_especie = input("Digite a espécie do pet (cachorro/gato): ")
+        pet_idade = float(input("Digite a idade do pet em anos: "))
+
+        sugestao = sugestoes_cuidados(pet_especie, pet_idade)
+
+        print("\nSugestões de cuidados:")
+        for chave, valor in sugestao.items():
+            print(f"{chave.capitalize()}: {valor}")
+
+    elif opcao == 9:
         print("Obrigado por usar Vida Pet!")
         break
 
     else:
         print("Opção inválida. Digite um número entre 1 e 7.")
         
-
