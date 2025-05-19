@@ -38,11 +38,11 @@ pip install -r requirements.txt
 
 ## ⚠️ Restrições e Limitações
 
-- A aplicação não possui suporte para uso offline
-- Requer conexão ativa com a internet para funcionar corretamente
-- Otimizada apenas para telas maiores (desktop e tablet)
-- Permissões de acesso são limitadas conforme o perfil do usuário
-- Funcionalidades avançadas ainda estão em fase experimental
+- Armazenamento baseado em arquivos de texto simples.
+- Não usa o horário atual.
+- Interface baseada exclusivamente em linha de comando.
+- Não é possível deletar metas.
+- Eventos e sugestões de cuidados limitados.
 
 ## 👤 Desenvolvedores(a) responsável pela aplicação.
 
