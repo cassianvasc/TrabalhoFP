@@ -65,7 +65,7 @@ def editar_animal():
     
 
 def excluir_animal():  
-    excluir = input("Digite o nome do animal que você quer excluir: ")
+    excluir = input("Digite o nome do animal que você quer excluir: ").lower()
     encontrado = False
 
     with open("file.txt", 'r', encoding="utf-8") as file:
@@ -74,7 +74,7 @@ def excluir_animal():
     with open("file.txt", 'w', encoding="utf-8") as file:
         for linha in linhas:
             animal = linha.strip().split(";")
-            if animal[0] == excluir:
+            if animal[0].lower() == excluir:
                 encontrado = True
                 continue
             else:
@@ -87,11 +87,11 @@ def excluir_animal():
 
 def registrar_evento():                       
     print("Qual evento você deseja registrar?")     
-    opcao = int(input("1- Vacinações, 2- Consultas Veterinárias, 3- Aplicações de remédios\n"))
+    opcao = input("1- Vacinações, 2- Consultas Veterinárias, 3- Aplicações de remédios\n")
 
-    if opcao < 1 or opcao > 3:
-        while opcao < 1 or opcao > 3:
-            opcao = int(input("Opção inválida. Escolha uma das opções citadas: "))
+    if opcao != "1" and opcao != "2" and opcao != "3" and opcao.isdigit() == False:
+        while opcao != "1" and opcao != "2" and opcao != "3" and opcao.isdigit() == False:
+            opcao = input("Opção inválida. Escolha uma das opções citadas: ")
 
     if opcao == 1:
         nome = input("Você quer marcar a vacinação para que pet? ")
@@ -253,7 +253,7 @@ def definir_metas():
                     linhas_novas.append(f"Pet: {nome}\n")
                     linhas_novas.append(linhas[i + 1])
 
-                    if resposta == "sim" or resposta == "não":
+                    if resposta == "sim" or resposta == "não" or resposta == "nao":
                         linhas_novas.append(f"Status: {resposta}\n")
                         print("Status atualizado com sucesso.")
                     else:
@@ -283,8 +283,6 @@ def sugestoes_cuidados(especie, idade):
     cuidados = {}
 
     try:
-        # if not isinstance(idade, (int, float)):
-        #     raise ValueError("O parâmetro 'idade' deve ser um número.")
         if idade < 0:
             raise ValueError("A idade não pode ser negativa.")
         
@@ -352,7 +350,8 @@ while True:
     print("O que você deseja fazer?")
     
     try:
-        opcao = int(input("1- Adicionar um pet, 2- Visualizar um pet, 3- Editar um pet ja existente, 4- Excluir um pet, 5- Registrar eventos, 6- Definir/Atualizar metas, 7- Visualizar pets para adoção, 8-Sugestões personalizadas, 9- Sair\n"))
+        opcao = int(input("1- Adicionar um pet, \n2- Visualizar um pet, \n3- Editar um pet ja existente, \n4- Excluir um pet," 
+                          "\n5- Registrar eventos, \n6- Definir/Atualizar metas, \n7- Visualizar pets para adoção, \n8- Sugestões personalizadas, \n9- Sair\n"))
     except ValueError:
         print("Entrada inválida. Por favor, digite um número entre 1 e 9.")
         continue
@@ -404,5 +403,5 @@ while True:
         break
 
     else:
-        print("Opção inválida. Digite um número entre 1 e 9.")
+        print("Opção inválida. Digite um número de 1 e 9.")
         
