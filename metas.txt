@@ -1,3 +1,4 @@
 Pet: lancelot
 Meta: banhos semanais
+Status: sim
 

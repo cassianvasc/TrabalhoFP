@@ -280,55 +280,68 @@ def definir_metas():
 
 
 def sugestoes_cuidados(especie, idade):
-    especie = especie.lower()
     cuidados = {}
 
-    if especie == "cachorro":
-        if idade < 1:
-            cuidados = {
-                "brinquedos": "Brinquedos de borracha macia e mordedores próprios para filhotes",
-                "alimentação": "Ração para filhotes de cachorro (rica em proteínas e cálcio)",
-                "exercício": "Caminhadas curtas e brincadeiras leves\n"
-            }
-        elif idade < 7:
-            cuidados = {
-                "brinquedos": "Bolas resistentes, cordas e brinquedos interativos",
-                "alimentação": "Ração para adultos de acordo com o porte",
-                "exercício": "Caminhadas diárias e atividades físicas moderadas\n"
-            }
+    try:
+        # if not isinstance(idade, (int, float)):
+        #     raise ValueError("O parâmetro 'idade' deve ser um número.")
+        if idade < 0:
+            raise ValueError("A idade não pode ser negativa.")
+        
+        especie = especie.lower()
+
+        if especie == "cachorro":
+            if idade < 1:
+                cuidados = {
+                    "brinquedos": "Brinquedos de borracha macia e mordedores próprios para filhotes",
+                    "alimentação": "Ração para filhotes de cachorro (rica em proteínas e cálcio)",
+                    "exercício": "Caminhadas curtas e brincadeiras leves\n"
+                }
+            elif idade < 7:
+                cuidados = {
+                    "brinquedos": "Bolas resistentes, cordas e brinquedos interativos",
+                    "alimentação": "Ração para adultos de acordo com o porte",
+                    "exercício": "Caminhadas diárias e atividades físicas moderadas\n"
+                }
+            else:
+                cuidados = {
+                    "brinquedos": "Brinquedos de baixo impacto, como pelúcias e mordedores leves",
+                    "alimentação": "Ração sênior com menos gordura e suplementos articulares",
+                    "exercício": "Exercícios leves e regulares para manter a mobilidade\n"
+                }
+
+        elif especie == "gato":
+            if idade < 1:
+                cuidados = {
+                    "brinquedos": "Bolinha com guizo, varinhas com penas e brinquedos pequenos",
+                    "alimentação": "Ração para filhotes de gato (com alta energia e taurina)",
+                    "exercício": "Brincadeiras curtas com estímulos visuais\n"
+                }
+            elif idade < 10:
+                cuidados = {
+                    "brinquedos": "Arranhadores, túneis e brinquedos interativos",
+                    "alimentação": "Ração para adultos ou alimentação úmida equilibrada",
+                    "exercício": "Brincadeiras diárias para manter o peso ideal\n"
+                }
+            else:
+                cuidados = {
+                    "brinquedos": "Brinquedos suaves e arranhadores baixos",
+                    "alimentação": "Ração sênior com baixo teor calórico",
+                    "exercício": "Estímulos leves e cuidados com articulações\n"
+                }
+
         else:
             cuidados = {
-                "brinquedos": "Brinquedos de baixo impacto, como pelúcias e mordedores leves",
-                "alimentação": "Ração sênior com menos gordura e suplementos articulares",
-                "exercício": "Exercícios leves e regulares para manter a mobilidade\n"
+                "mensagem": "Espécie não reconhecida. Por favor, informe 'cachorro' ou 'gato'.\n"
             }
 
-    elif especie == "gato":
-        if idade < 1:
-            cuidados = {
-                "brinquedos": "Bolinha com guizo, varinhas com penas e brinquedos pequenos",
-                "alimentação": "Ração para filhotes de gato (com alta energia e taurina)",
-                "exercício": "Brincadeiras curtas com estímulos visuais\n"
-            }
-        elif idade < 10:
-            cuidados = {
-                "brinquedos": "Arranhadores, túneis e brinquedos interativos",
-                "alimentação": "Ração para adultos ou alimentação úmida equilibrada",
-                "exercício": "Brincadeiras diárias para manter o peso ideal\n"
-            }
-        else:
-            cuidados = {
-                "brinquedos": "Brinquedos suaves e arranhadores baixos",
-                "alimentação": "Ração sênior com baixo teor calórico",
-                "exercício": "Estímulos leves e cuidados com articulações\n"
-            }
-
-    else:
+    except ValueError as ve:
         cuidados = {
-            "mensagem": "Espécie não reconhecida. Por favor, informe 'cachorro' ou 'gato'.\n"
+            "erro": str(ve)
         }
 
     return cuidados
+
 
 pets = {}
 eventos = {'vacinas': [], 'consultas': [], 'remedios': []}
@@ -367,15 +380,29 @@ while True:
         import webbrowser
         print(webbrowser.open("file:///C:/Users/ARELR/OneDrive/%C3%81rea%20de%20Trabalho/TrabalhoFP/index.html"))
 
-    elif opcao == 8:    
+    elif opcao == 8:
         pet_especie = input("Digite a espécie do pet (cachorro/gato): ")
-        pet_idade = float(input("Digite a idade do pet em anos: "))
+        pet_idade_input = input("Digite a idade do pet em anos: ")
 
-        sugestao = sugestoes_cuidados(pet_especie, pet_idade)
+        try:
+            # Tenta converter idade para número (float permite inteiros e decimais)
+            pet_idade = float(pet_idade_input)
+            sugestao = sugestoes_cuidados(pet_especie, pet_idade)
+            print("\nSugestões de cuidados:")
+            for chave, valor in sugestao.items():
+                print(f"{chave.capitalize()}: {valor}")
 
-        print("\nSugestões de cuidados:")
-        for chave, valor in sugestao.items():
-            print(f"{chave.capitalize()}: {valor}")
+        except ValueError:
+            print("Idade inválida. Por favor, insira um número válido (ex: 2 ou 3.5).")
+        
+        # pet_especie = input("Digite a espécie do pet (cachorro/gato): ")
+        # pet_idade = input("Digite a idade do pet em anos: ")
+
+        # sugestao = sugestoes_cuidados(pet_especie, pet_idade)
+
+        # print("\nSugestões de cuidados:")
+        # for chave, valor in sugestao.items():
+        #     print(f"{chave.capitalize()}: {valor}")
 
     elif opcao == 9:
         print("Obrigado por usar Vida Pet!")
