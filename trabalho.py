@@ -378,14 +378,17 @@ while True:
 
     elif opcao == 7:
         import webbrowser
-        print(webbrowser.open("file:///C:/Users/ARELR/OneDrive/%C3%81rea%20de%20Trabalho/TrabalhoFP/index.html"))
+        import os
+
+        caminho_html = os.path.abspath("index.html")
+        webbrowser.open(f"file://{caminho_html}")
 
     elif opcao == 8:
         pet_especie = input("Digite a espécie do pet (cachorro/gato): ")
         pet_idade_input = input("Digite a idade do pet em anos: ")
 
         try:
-            # Tenta converter idade para número (float permite inteiros e decimais)
+            
             pet_idade = float(pet_idade_input)
             sugestao = sugestoes_cuidados(pet_especie, pet_idade)
             print("\nSugestões de cuidados:")
@@ -393,16 +396,8 @@ while True:
                 print(f"{chave.capitalize()}: {valor}")
 
         except ValueError:
-            print("Idade inválida. Por favor, insira um número válido (ex: 2 ou 3.5).")
+            print("Idade inválida. Por favor, insira um número válido (ex: 2 ou 5).")
         
-        # pet_especie = input("Digite a espécie do pet (cachorro/gato): ")
-        # pet_idade = input("Digite a idade do pet em anos: ")
-
-        # sugestao = sugestoes_cuidados(pet_especie, pet_idade)
-
-        # print("\nSugestões de cuidados:")
-        # for chave, valor in sugestao.items():
-        #     print(f"{chave.capitalize()}: {valor}")
 
     elif opcao == 9:
         print("Obrigado por usar Vida Pet!")
