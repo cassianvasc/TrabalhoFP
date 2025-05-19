@@ -51,4 +51,9 @@ pip install -r requirements.txt
 - GitHub: [@luccarvdo](https://github.com/luccarissato)
 - E-mail: lrvo@cesar.school
 
+**Cassian Vasconcelos Ferrari**  
+
+- GitHub: [@cassianvasc](https://github.com/cassianvasc)
+- E-mail: nbcassferrari@gmail.com
+
 Sinta-se à vontade para entrar em contato para dúvidas, sugestões ou colaborações!
