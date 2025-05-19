@@ -283,8 +283,6 @@ def sugestoes_cuidados(especie, idade):
     cuidados = {}
 
     try:
-        # if not isinstance(idade, (int, float)):
-        #     raise ValueError("O parâmetro 'idade' deve ser um número.")
         if idade < 0:
             raise ValueError("A idade não pode ser negativa.")
         
