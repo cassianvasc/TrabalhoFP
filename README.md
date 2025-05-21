@@ -61,4 +61,9 @@ pip install -r requirements.txt
 - GitHub: [@FelipeCMeloB](https://github.com/felipecmelob)
 - E-mail: fcmb@cesar.school
 
+**Giovanna Karla Santos do Nascimento**
+
+- GitHub: [GihNascimento]
+
+- E-mail: gksn@cesar.school
 Sinta-se à vontade para entrar em contato para dúvidas, sugestões ou colaborações!
