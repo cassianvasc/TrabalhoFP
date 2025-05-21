@@ -56,4 +56,9 @@ pip install -r requirements.txt
 - GitHub: [@cassianvasc](https://github.com/cassianvasc)
 - E-mail: nbcassferrari@gmail.com
 
+**Felipe Cavalcanti Melo Bezerra**  
+
+- GitHub: [@FelipeCMeloB](https://github.com/felipecmelob)
+- E-mail: fcmb@cesar.school
+
 Sinta-se à vontade para entrar em contato para dúvidas, sugestões ou colaborações!
