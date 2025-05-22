@@ -64,6 +64,8 @@ pip install -r requirements.txt
 **Giovanna Karla Santos do Nascimento**
 
 - GitHub: [GihNascimento]
-
+(https://github.com/GihNascimento)
 - E-mail: gksn@cesar.school
+
+
 Sinta-se à vontade para entrar em contato para dúvidas, sugestões ou colaborações!
